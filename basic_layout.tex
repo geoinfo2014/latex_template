@@ -1,0 +1,72 @@
+\documentclass[12pt,a4paper]{article} %set font size to 12pt and use din A4 paper
+
+%function to create global vars, which can be defined by 
+%\<VARNAME>{<VALUE>} and accessed by \get<VARNAME>
+\makeatletter
+\newcommand*\DefVar[1]{\@namedef{#1}##1{\global\@namedef{get#1}{##1}}}
+\makeatother
+
+%create needed globvars
+\DefVar{Title}
+\DefVar{AuthorName}
+\DefVar{AuthorMatNr}
+\DefVar{AuthorMail}
+\DefVar{AuthorMailLink}
+
+%set default values
+\Title{Your Document Title}
+\AuthorName{Your Name}
+\AuthorMatNr{}
+\AuthorMail{Your eMail address}
+
+
+%setup some needed vars
+\AuthorMailLink{\href{mailto:\getAuthorMail}{\getAuthorMail}}
+
+%include needed packages, set language and document geometry(padding)
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel} %use new german dictionary to warp words
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\usepackage[german]{fancyref}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+%set line spacing
+\linespread{1.50}
+
+%don't draw ugly boxes around hyperlinks, just display them like normal text
+\hypersetup{unicode=true,colorlinks=true,linkcolor=black,filecolor=black,urlcolor=black}
+
+%setup page style
+\pagestyle{fancy}
+\fancyhead{} \fancyfoot{}
+
+\fancyhf[HL]{
+	\getAuthorName \\
+	\footnotesize{\href{mailto:\getAuthorMail}{\getAuthorMail}}
+}
+\fancyhf[HC]{
+	{\footnotesize Matr.Nr.:} \getAuthorMatNr\\
+	\footnotesize{}
+}
+\fancyhf[HR]{
+	\getTitle \\
+	\footnotesize{}
+}
+
+\fancyhf[FR]{
+	\thepage /\pageref{LastPage}
+}
+
+\author{
+	\getAuthorName\\
+	Matrikelnummer: \textit{\getAuthorMatNr}\\
+	Email: \textit{\href{mailto:\getAuthorMail}{\getAuthorMail}}\\\\
+}
+\title{\getTitle}
