@@ -34,8 +34,25 @@
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{hyperref}
+\usepackage[usenames,dvipsnames,svgnames,table,colortbl]{xcolor}
+\usepackage{colortbl} %colored tables
+\usepackage{tabularx} %better tables
+\usepackage{siunitx} %si units
 \usepackage[german]{fancyref}
 \usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+%setup siunit for german documents and geophysics
+\sisetup{
+	quotient-mode = fraction,
+	fraction-function = \tfrac,
+	output-decimal-marker = {,},
+	per-mode = symbol,
+	group-minimum-digits = 4,
+	group-separator = \text{~},
+	exponent-product = \cdot,
+	output-product = \cdot
+}
+\DeclareSIUnit\gon{^{gon}}
 
 %set line spacing
 \linespread{1.50}
@@ -52,11 +69,10 @@
 	\footnotesize{\href{mailto:\getAuthorMail}{\getAuthorMail}}
 }
 \fancyhf[HC]{
-	{\footnotesize Matr.Nr.:} \getAuthorMatNr\\
-	\footnotesize{}
+	{\footnotesize Matr.Nr.:} $\getAuthorMatNr$
 }
 \fancyhf[HR]{
-	\getTitle \\
+	\textsc{\getTitle} \\
 	\footnotesize{}
 }
 

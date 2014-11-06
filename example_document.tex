@@ -1,7 +1,15 @@
 \include{basic_layout}
 \include{basic_data}
+\include{basic_code}
+\lstset{language=TeX}
 
-\Title{Beispiel Dokument}
+\Title{Geodäsie Template Uni Stuttgart}
+\fancyhf[HC]{}
+\author{
+	\getAuthorName\\
+	Email: \textit{\href{mailto:\getAuthorMail}{\getAuthorMail}}\\\\
+}
+
 
 \begin{document}
 \maketitle %create fancy title
@@ -9,8 +17,158 @@
 
 \newpage %create new page for sections
 
-\section{Dokumente Aufbau}
+\section{Usage}
+\subsection{Anpassen des Templates}
+Bevor Ihr das Template nutzen könnt, müsst Ihr es noch für euch Anpassen, hierzu müsst Ihr die Datei \texttt{basic\_data.tex} bearbeiten. Dort tragt Ihr an entsprechender Stelle euren Namen, eure Matrikelnummer und E-Mail adresse in die geschweiften Klammern ein. Dieses kann dann z.B. so aussehen:
+\begin{lstlisting}
+ \AuthorName{Max Musterman}
+ \AuthorMatNr{12345678}
+ \AuthorMail{muster@example.com}
+\end{lstlisting}
 
-Um dieses Template zu nutzen müssen einfach in jedem Dokument
+\subsection{Einbinden der Templates}
+Zum nutzen des Templates müsst Ihr schließlich noch die beiden Dateien \texttt{basic\_layout.txt} und \texttt{basic\_data.tex} einbinden.
+Dieses könnt ihr am einfachsten machen, indem Ihr am Anfang eures Dokumentes folgendes schreibt:
+\begin{lstlisting}
+ \include{basic_layout}
+ \include{basic_data}
+\end{lstlisting}
+
+Nun müsst ihr nur noch den Title eures Dokumentes festlegen, dieses geschieht durch den Befehl \texttt{\char`\\Title\{<Euer Titel>\}}, wobei \texttt{<Euer Titel>} durch den Dokumenten Titel ersetzt werden muss.
+
+\subsection{Erstellen eines minimalistischen Dokumentes mit Deckblatt und Inhaltsverzeichnis}
+Ein minimales Dokument welches dieses Template nutzt, muss die Layout Datei sowie Nutzer-Informationen einbinden(\textit{Zeile 1-2}) den Dokumenten Titel festlegen(\textit{Zeile 4}) und wie jedes Standard {\LaTeX} Dokument den eigentlichen Inhalt einleiten(\textit{Zeile 7}). Je nach bedarf kann dann noch der Title mit allen Informationen von euch(\textit{Titel, Name, E-Mail, Matrikelnummer und aktuellen Datum}) angelegt werden und ein Inhaltsverzeichnis erzeugt werden. Das ganze sieht dann in etwa so aus:
+\pagebreak
+\begin{lstlisting}
+ \include{basic_layout}
+ \include{basic_data}
+
+ \Title{Muster Dokument}
+
+
+ \begin{document}
+ \maketitle %erzeugt das Deckblatt(den Titel mit allen wichtigen Informationen von euch)
+ \tableofcontents %erzeugt das Inhaltsverzeichnis
+
+ \newpage %springt auf eine neue Seite (kann bei kleinen Dokumenten auch wegfallen)
+
+ \section{Usage} %erstellt einen Absatz
+ %hier folgt der Inhalt des ersten Absatzes.
+ 
+ \end{document} %beendet das Dokument
+\end{lstlisting}
+
+
+\section{Grundlagen}
+\subsection{Mathematische Funktionen}
+\subsubsection{Darstellung im Test}
+Um in {\LaTeX} Funktionen im Text darzustellen, müsst ihr die Formel nur mit zwei \texttt{\$} Symbolen umschließen, das sieht dann z.B. so aus $x=100\si{\meter} \cdot 2\si{\meter}$.
+
+\subsubsection{Darstellung größerer Funktionen (Zentriert)}
+Längere Funktionen sollten nicht im Fließtext dargestellt werden sondern zentriert unter dem Text stehen. Um solche Funktionen darzustellen gibt es den \texttt{equation} block.
+\subsubsection*{Beispiel}
+\begin{lstlisting}
+ Unter diesem Text steht eine Mathematische Formel
+ \begin{equation}
+     x=\frac{
+         \sqrt[5]{600 \cdot }
+     }{
+         \int_5^{20} 5y
+     }
+     \cdot \left(\begin{array}{c}5\\6\end{array}\right)
+ \end{equation}
+\end{lstlisting}
+Unter diesem Text steht eine Mathematische Formel
+\begin{equation} \label{eq:einfache}
+	x=\frac{
+	    \sqrt[5]{600 \cdot }
+	}{
+		\int_5^{20} 5y
+	}
+	\cdot \left(\begin{array}{c}5\\6\end{array}\right)
+\end{equation}
+
+\subsubsection{Darstellung von Gleichungssystemen}
+Zum Darstelen von Gleichungssystem wie z.B.
+\begin{align}
+\measuredangle \text{P3P2A}
+	&= \arccos \left(
+		\frac{\overline{\text{P3P2}}^2 + \overline{\text{P2A}}^2 - \overline{\text{P3A}}^2}
+		     {2 \cdot \overline{\text{P3P2}} \cdot \overline{\text{P2A}}}
+		\right) \\
+	&= \arccos \left(
+		\frac{6,934^2\si{\meter} + 7,002^2\si{\meter} - 9,911^2\si{\meter}}
+		     {2 \cdot 6,934\si{\meter} \cdot 7,002\si{\meter}}
+		\right) \\
+	&= 1,5823 \\
+	&= 1,5823 \cdot \frac{200}{\pi} = 100,7340\si{\gon}
+\end{align}
+gibt es den \texttt{align} block, bei den ihr dann mit Hilfe des \texttt{\&}-Symbols angeben könnt, anhand welchen Zeichens in einer Zeile die Formel ausgerichtet wird. Dabei richtet {\LaTeX} die Zeile immer anhand des auf den \texttt{\&} folgenden Symbols aus.
+\subsubsection*{Beispiel}
+\begin{lstlisting}
+ \measuredangle \text{P3P2A}
+ 	&= \arccos \left(
+ 		\frac{\overline{\text{P3P2}}^2 + \overline{\text{P2A}}^2
+ 		    - \overline{\text{P3A}}^2}
+ 		     {2 \cdot \overline{\text{P3P2}} \cdot \overline{\text{P2A}}}
+ 		\right) \\
+ 	&= \arccos \left(
+ 		\frac{6,934^2\si{\meter} + 7,002^2\si{\meter} - 9,911^2\si{\meter}}
+ 		     {2 \cdot 6,934\si{\meter} \cdot 7,002\si{\meter}}
+ 		\right) \\
+ 	&= 1,5823 \\
+ 	&= 1,5823 \cdot \frac{200}{\pi} = 100,7340\si{\gon}
+ \end{align}
+\end{lstlisting}
+
+\subsubsection{Formeln nicht durchnummerieren}
+Um die Formel nicht durchnummerieren, genügt es den \texttt{equation} bzw. den \texttt{align} block einfach ein Asterisk anzustellen, so wird z.B. aus \fref{eq:einfache} das hier:
+\begin{equation*}
+	x=\frac{
+	    \sqrt[5]{600 \cdot }
+	}{
+		\int_5^{20} 5y
+	}
+	\cdot \left(\begin{array}{c}5\\6\end{array}\right)
+\end{equation*}
+\begin{lstlisting}
+ \begin{equation*}
+ 	x=\frac{
+ 	    \sqrt[5]{600 \cdot }
+ 	}{
+ 		\int_5^{20} 5y
+ 	}
+ 	\cdot \left(\begin{array}{c}5\\6\end{array}\right)
+ \end{equation*}
+\end{lstlisting}
+
+\subsection{Darstellung von Einheiten}
+Damit die Einheiten richtig dargestellt werden, ist das Paket \texttt{siunitx} geladen und schon auf Deutsche Darstellung umgestellt. Das wohl wichtigste ist, dass der Dezimalpunkt automatisch in Kommata umgewandelt werden (\textit{Vorausgesetzt, das der }\texttt{\char`\\num\{\}}\textit{ Befehl genutzt wird}). Wer mehr über die Vorzüge dieses Pakets wissen möchte möge sich bitte einfach an mich wenden oder in die Doku schauen: \url{ftp://ftp.dante.de/tex-archive/macros/latex/exptl/siunitx/siunitx.pdf}. Dennoch hier die wichtigsten Funktionen.
+\subsubsection{Zahlen}
+Wenn ihr im Text Zahlen schreiben wollt nutzt das \texttt{\char`\\num\{\}} Kommando, so wird z.B:\\
+\texttt{\char`\\num\{12345.6789e3\}} als \num{12345.6789e3} dargestellt oder \texttt{\char`\\num\{13 x 1/3\}} als \num{13 x 1/3}.
+
+\subsubsection{Winkel}
+Wenn ihr Winkel in Grad mit Sekunden und Minuten darstellen wollt, könnt hier das \texttt{\char`\\ang\{\}} Kommando nutzen, das ganze sieht dann wie Folgt aus:
+
+\begin{tabularx}{\textwidth}{XX}
+\rowcolor{CBackG}
+ \texttt{\char`\\ang\{10\}} & \ang{10} \\
+ \texttt{\char`\\ang\{10;12;\}} & \ang{10;12;} \\
+\rowcolor{CBackG}
+ \texttt{\char`\\ang\{10;12;20.4\}} & \ang{10;12;20.4}
+\end{tabularx}\\
+\\
+Im weiteren ist auch die Einheit gon von mir vordefiniert wurden und kann wie folgt verwendet werden:
+
+\begin{minipage}{0.5\textwidth}
+\begin{lstlisting}[numbers=none]
+$\SI{103.63}{\gon}$ oder $200\si{\gon}$
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+$\SI{103.63}{\gon}$ oder $200\si{\gon}$
+\end{minipage}
+
 
 \end{document}

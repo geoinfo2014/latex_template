@@ -1,0 +1,28 @@
+\usepackage{listings} %source code package
+\definecolor{CBackG}{HTML}{EEEFFF}
+%\usepackage{caption}
+%\DeclareCaptionFont{white}{\color{white}}
+%\parbox[position][height][inner-pos]{width}{text}
+%\DeclareCaptionFormat{listing}{\colorbox{black}{\parbox{\textwidth}{#1#2#3}}}
+%\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\lstset{
+	numbers=left,
+	backgroundcolor=\color{CBackG},
+	frame=lines,
+	basicstyle=\ttfamily\scriptsize,
+	numberstyle=\tiny,
+	keywordstyle=\bfseries\color{blue},
+	stringstyle=\color{red},
+	commentstyle=\color{DarkGreen},
+	breaklines=true
+}
+\lstset{literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}1
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
+	{~}{{\textasciitilde}}1,
+}
