@@ -53,6 +53,7 @@
 	output-product = \cdot
 }
 \DeclareSIUnit\gon{^{gon}}
+\DeclareSIUnit\mgon{^{mgon}}
 
 %set line spacing
 \linespread{1.50}
@@ -68,14 +69,14 @@
 	\getAuthorName \\
 	\footnotesize{\href{mailto:\getAuthorMail}{\getAuthorMail}}
 }
-\fancyhf[HC]{
-	{\footnotesize Matr.Nr.:} $\getAuthorMatNr$
-}
 \fancyhf[HR]{
 	\textsc{\getTitle} \\
 	\footnotesize{}
 }
 
+\fancyhf[FL]{
+	{\footnotesize Matr.Nr.:} $\getAuthorMatNr$
+}
 \fancyhf[FR]{
 	\thepage /\pageref{LastPage}
 }
