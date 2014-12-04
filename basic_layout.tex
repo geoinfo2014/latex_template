@@ -19,7 +19,6 @@
 \AuthorMatNr{}
 \AuthorMail{Your eMail address}
 
-
 %setup some needed vars
 \AuthorMailLink{\href{mailto:\getAuthorMail}{\getAuthorMail}}
 
@@ -47,7 +46,7 @@
 	fraction-function = \tfrac,
 	output-decimal-marker = {,},
 	per-mode = symbol,
-	group-minimum-digits = 4,
+	group-minimum-digits = 6,
 	group-separator = \text{~},
 	exponent-product = \cdot,
 	output-product = \cdot
@@ -57,6 +56,9 @@
 
 %set line spacing
 \linespread{1.50}
+
+%smooth gray
+\definecolor{smoothgray}{HTML}{EEEFFF}
 
 %don't draw ugly boxes around hyperlinks, just display them like normal text
 \hypersetup{unicode=true,colorlinks=true,linkcolor=black,filecolor=black,urlcolor=black}
