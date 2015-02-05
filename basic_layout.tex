@@ -37,6 +37,8 @@
 \usepackage{colortbl} %colored tables
 \usepackage{tabularx} %better tables
 \usepackage{siunitx} %si units
+\usepackage{subfigure}
+\usepackage{float}
 \usepackage[german]{fancyref}
 \usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 
@@ -51,8 +53,9 @@
 	exponent-product = \cdot,
 	output-product = \cdot
 }
-\DeclareSIUnit\gon{^{gon}}
-\DeclareSIUnit\mgon{^{mgon}}
+\DeclareSIUnit\gon{gon}
+\DeclareSIUnit\mgon{\milli\gon}
+\DeclareSIUnit\px{px}
 
 %set line spacing
 \linespread{1.50}
